@@ -1,6 +1,14 @@
 # Steps
  - create react app
  - configured tailwind
+ - Header
+ - Routing
+ - Login Form
+ - Sign up
+ - Form Validation
+ - useRef hook
+ - Firebase Setup
+ - Deploying App into Production
 
 
 # Features 
