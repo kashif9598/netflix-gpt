@@ -1,31 +1,78 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { addUser } from "../store/userSlice";
+import { useDispatch } from "react-redux";
+import { BG_IMG } from "../utils/constants";
 
 const Login = () => {
+  // if isSignedIn is false, render sign up Form
   const [isSignedIn, setIsSignedIn] = useState(true);
   const [errMessage, setErrMessage] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [name, setName] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
   const toggleSignIn = () => {
     setIsSignedIn(!isSignedIn);
     setEmail("");
     setPassword("");
     setName("");
-    setErrMessage(null)
+    setErrMessage(null);
   };
 
   const handleButtonClick = () => {
     const message = isSignedIn
       ? checkValidData(email, password)
-      : checkValidData(
-          email,
-          password,
-          name
-        );
+      : checkValidData(email, password, name);
     setErrMessage(message);
+    if (message) return;
+
+    if (!isSignedIn) {
+      //sign up logic
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name,
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName }));
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrMessage(error.message);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      //sign in logic
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
   return (
     <div>
@@ -33,7 +80,7 @@ const Login = () => {
       <div>
         <img
           className="absolute"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/893a42ad-6a39-43c2-bbc1-a951ec64ed6d/1d86e0ac-428c-4dfa-9810-5251dbf446f8/IN-en-20231002-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BG_IMG}
           alt="background"
         />
       </div>
@@ -48,7 +95,7 @@ const Login = () => {
             className="bg-[#333] p-3 my-3 w-full rounded-md"
             type="text"
             placeholder="Name"
-            onChange={(e) =>setName(e.target.value) }
+            onChange={(e) => setName(e.target.value)}
           />
         )}
         <input
@@ -56,14 +103,14 @@ const Login = () => {
           className="bg-[#333] p-3 my-3 w-full rounded-md"
           type="text"
           placeholder="Email address"
-          onChange={(e) =>setEmail(e.target.value) }
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           value={password}
           className="bg-[#333] p-3 my-3 w-full rounded-md"
           type="password"
           placeholder="Password"
-          onChange={(e) =>setPassword(e.target.value) }
+          onChange={(e) => setPassword(e.target.value)}
         />
         <p className="text-red-700">{errMessage}</p>
         <button
