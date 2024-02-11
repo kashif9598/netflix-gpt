@@ -24,6 +24,9 @@
  - Fetch data for trailer video
  - update store with trailer video data
  - embedded the youtube video and make it autoplay and mute
+ - Build secondary component
+ - Build Movie list
+ - Build Movie card
 
 # Features 
  - Login/Sign up
@@ -44,7 +47,7 @@
 # Features for Future Releases
 
 - User dropdown for signOut (Header Dropdown)
-- create Account Page in header droopdown
+- create Account Page in header dropdown
 - create Help Center/Contact Us page in header dropdown with mail options
 
 user id and password : kashifsheikh@gmail.com

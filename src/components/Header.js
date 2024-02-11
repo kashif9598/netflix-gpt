@@ -40,7 +40,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-screen px-2 py-2 bg-gradient-to-b from-black z-30 justify-between flex">
+    <div className="absolute w-full px-2 py-2 bg-gradient-to-b from-black z-30 justify-between flex">
       <img
         className="w-[235px]"
         src={APP_LOGO}
