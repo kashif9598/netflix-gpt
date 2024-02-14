@@ -10,8 +10,10 @@ import { auth } from "../utils/firebase";
 import { addUser } from "../store/userSlice";
 import { useDispatch } from "react-redux";
 import { BG_IMG } from "../utils/constants";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const {t} = useTranslation();
   // if isSignedIn is false, render sign up Form
   const [isSignedIn, setIsSignedIn] = useState(true);
   const [errMessage, setErrMessage] = useState(null);
@@ -88,13 +90,13 @@ const Login = () => {
         onClick={(e) => e.preventDefault()}
         className="absolute bg-black text-white mx-auto w-4/12 right-0 left-0 my-36 bg-opacity-80 p-12"
       >
-        <h1 className="text-3xl pb-6">{isSignedIn ? "Sign In" : "Sign Up"}</h1>
+        <h1 className="text-3xl pb-6">{isSignedIn ? t("Sign_In") : t("Sign_Up")}</h1>
         {!isSignedIn && (
           <input
             value={name}
             className="bg-[#333] p-3 my-3 w-full rounded-md"
             type="text"
-            placeholder="Name"
+            placeholder={t("Name")}
             onChange={(e) => setName(e.target.value)}
           />
         )}
@@ -102,14 +104,14 @@ const Login = () => {
           value={email}
           className="bg-[#333] p-3 my-3 w-full rounded-md"
           type="text"
-          placeholder="Email address"
+          placeholder={t("Email_address")}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           value={password}
           className="bg-[#333] p-3 my-3 w-full rounded-md"
           type="password"
-          placeholder="Password"
+          placeholder={t("Password")}
           onChange={(e) => setPassword(e.target.value)}
         />
         <p className="text-red-700">{errMessage}</p>
@@ -117,12 +119,12 @@ const Login = () => {
           className="bg-red-600 w-full rounded-md p-3 my-3 font-bold"
           onClick={handleButtonClick}
         >
-          {isSignedIn ? "Sign In" : "Sign Up"}
+          {isSignedIn ? t("Sign_In") : t("Sign_Up")}
         </button>
         <p className="cursor-pointer mt-3" onClick={toggleSignIn}>
           {isSignedIn
-            ? "New to Netflix? Sign Up now"
-            : "Already registered? Sign In"}
+            ? t("Sign_Up_question")
+            : t("sign_in_question")}
         </p>
       </form>
     </div>

@@ -1,0 +1,19 @@
+{
+    "now_playing": "Lecture en cours",
+    "GPT_Search": "{{GPT}} Recherche",
+    "Sign_Out": "Se déconnecter",
+    "Search": "Recherche",
+    "What_do_you_wanna_watch_today": "Que veux-tu regarder aujourd'hui ?",
+    "Sign_In": "Se connecter",
+    "Sign_Up": "S'inscrire",
+    "Name": "Nom",
+    "Email_address": "Adresse e-mail",
+    "Password": "Mot de passe",
+    "Sign_Up_question": "Nouveau sur Netflix ? S'inscrire maintenant",
+    "sign_in_question": "Déjà enregistré? Se connecter",
+    "Top_Rated": "Les mieux notés",
+    "Popular": "Populaire",
+    "Upcoming": "A venir",
+    "play": "Jouer",
+    "more_info": "Plus d'informations"
+}

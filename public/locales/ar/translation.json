@@ -1,0 +1,20 @@
+{
+    "now_playing": "الان العب",
+    "GPT_Search": "{{GPT}} يبحث",
+    "Sign_Out": "خروج",
+    "Search": "يبحث",
+    "What_do_you_wanna_watch_today": "ماذا تريد أن تشاهد اليوم؟",
+    "Sign_In": "تسجيل الدخول",
+    "Sign_Up": "اشتراك",
+    "Name": "اسم",
+    "Email_address": "عنوان البريد الإلكتروني",
+    "Password": "كلمة المرور",
+    "Sign_Up_question": "هل أنت جديد على Netflix؟ أفتح حساب الأن",
+    "sign_in_question": "مسجلة بالفعل؟ تسجيل الدخول",
+    "Top_Rated": "أعلى التقييمات",
+    "Popular": "شائع",
+    "Upcoming": "القادمة",
+    "play": "يلعب",
+    "more_info": "مزيد من المعلومات"
+
+}
