@@ -14,6 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -44,8 +45,8 @@ const Header = () => {
   }, []);
 
   const handleGptSearchClick = () => {
-    dispatch(toggleGptSearchView())
-  }
+    dispatch(toggleGptSearchView());
+  };
 
   return (
     <div className="absolute w-full px-2 py-2 bg-gradient-to-b from-black z-30 justify-between flex">
@@ -54,9 +55,16 @@ const Header = () => {
       {user && (
         <div className="flex p-4 m-4 items-center">
           <LanguageSwitcher />
-          <button className="bg-purple-800 rounded-lg py-2 my-2 px-4 mx-4 text-white" onClick={handleGptSearchClick}>{t('GPT_Search')}</button>
+          <button
+            className="bg-purple-800 rounded-lg py-2 my-2 px-4 mx-4 text-white"
+            onClick={handleGptSearchClick}
+          >
+            {!showGptSearch ? t("GPT_Search") : "Home"}
+          </button>
           <img alt="user-icon" src={USER_IMG} />
-          <button onClick={handleSignOut} className="text-white">{t("Sign_Out")}</button>
+          <button onClick={handleSignOut} className="text-white">
+            {t("Sign_Out")}
+          </button>
         </div>
       )}
     </div>

@@ -27,6 +27,10 @@
  - Build secondary component
  - Build Movie list
  - Build Movie card
+ - created Custom hooks
+ - GPT search page
+ - GPT Search Bar
+ - added i18n Multi lingual
 
 # Features 
  - Login/Sign up
